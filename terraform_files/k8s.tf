@@ -22,6 +22,7 @@ resource "aws_instance" "k8s-server" {
  "sudo apt-get update -y",
  "sudo apt-get install default-jdk -y",
  "sudo apt-get install docker.io -y",
+ "sudo systemctl start docker",
  "sudo wget https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64",
  "sudo chmod +x /home/ubuntu/minikube-linux-amd64",
  "sudo cp minikube-linux-amd64 /usr/local/bin/minikube",
@@ -31,7 +32,8 @@ resource "aws_instance" "k8s-server" {
  "sudo groupadd docker",
  "sudo usermod -aG docker ubuntu",
  "wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb",
- "sudo apt install ./google-chrome-stable_current_amd64.deb -y"
+ "sudo apt install ./google-chrome-stable_current_amd64.deb -y",
+ "sudo minikube start --driver=docker"
  ]
  connection {
  type = "ssh"
