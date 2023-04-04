@@ -20,7 +20,6 @@ resource "aws_instance" "k8s-server" {
  provisioner "remote-exec" {
  inline = [
  "sudo apt-get update -y",
- "sudo apt-get install default-jdk -y",
  "sudo apt-get install docker.io -y",
  "sudo systemctl start docker",
  "sudo wget https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64",
@@ -31,9 +30,6 @@ resource "aws_instance" "k8s-server" {
  "sudo cp kubectl /usr/local/bin/kubectl",
  "sudo groupadd docker",
  "sudo usermod -aG docker ubuntu",
- "wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb",
- "sudo apt install ./google-chrome-stable_current_amd64.deb -y",
- "sudo minikube start --driver=docker --force"
  ]
  connection {
  type = "ssh"
