@@ -1,10 +1,6 @@
 provider "aws" {
  region = "us-east-1"
 }
-resource "aws_eip_association" "eip_assoc" {
-  instance_id   = aws_instance.k8s-server.id
-  allocation_id = "eipalloc-0574c17ddc8f64df8"
-}
 resource "aws_instance" "k8s-server" {
  ami = "ami-007855ac798b5175e"
  instance_type = "t2.medium"
