@@ -28,7 +28,8 @@ resource "aws_instance" "k8s-server" {
  "sudo chmod +x /home/ubuntu/kubectl",
  "sudo cp kubectl /usr/local/bin/kubectl",
  "sudo groupadd docker",
- "sudo usermod -aG docker ubuntu"
+ "sudo usermod -aG docker ubuntu",
+ "minikube start"
  ]
  connection {
  type = "ssh"
