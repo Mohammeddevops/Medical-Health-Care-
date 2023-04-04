@@ -20,8 +20,7 @@ sh 'mvn clean install package'
 stage('Publish HTML Report'){
 steps{
  publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: 
-false, reportDir: '/var/lib/jenkins/workspace/Project-03-medicure/target/surefirereports', reportFiles: 'index.html', reportName: 'medicure-HTML Report', reportTitles: '', 
-useWrapperFileDirectly: true])
+false, reportDir: '/var/lib/jenkins/workspace/Project-03-medicure/target/surefirereports', reportFiles: 'index.html', reportName: 'medicure-HTML Report', reportTitles: '', useWrapperFileDirectly: true])
  }
 }
 stage('Docker build image') {
@@ -54,8 +53,7 @@ stage('Docker login and push') {
 stage('deploy to kubernetes'){
 steps{
 sshagent(['K8s']) {
-sh 'scp -o StrictHostKeyChecking=no deployment.yml
-ubuntu@172.42.22.152:/home/ubuntu'
+sh 'scp -o StrictHostKeyChecking=no deployment.yml ubuntu@172.42.22.152:/home/ubuntu'
 script{
 try{
 sh 'ssh ubuntu@172.42.22.152 kubectl apply -f .'
