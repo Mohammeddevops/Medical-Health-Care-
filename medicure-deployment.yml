@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: medicure-deployment
+  labels:
+    app: front-end
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: front-end
+  template:
+    metadata:
+      labels:
+        app: front-end
+    spec:
+       containers:
+         - name: addressbook
+           image: revanthkumar9/medicure:latest
+           ports:
+             - containerPort: 8082
+               name: http-web-app-01
