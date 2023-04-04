@@ -53,13 +53,13 @@ stage('Docker login and push') {
 stage('deploy to kubernetes'){
 steps{
 sshagent(['cred1']) {
-sh 'scp -o StrictHostKeyChecking=no deployment.yml ubuntu@172.42.22.152:/home/ubuntu'
+sh 'scp -o StrictHostKeyChecking=no deployment.yml ubuntu@3.80.93.0:/home/ubuntu'
 script{
 try{
-sh 'ssh ubuntu@172.42.22.152 kubectl apply -f .'
+sh 'ssh ubuntu@3.80.93.0 kubectl apply -f .'
 }catch(error)
 {
-sh 'ssh ubuntu@172.42.22.152 kubectl create -f .'
+sh 'ssh ubuntu@3.80.93.0 kubectl create -f .'
 }
 }
 }
