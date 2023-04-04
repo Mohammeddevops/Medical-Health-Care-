@@ -20,7 +20,7 @@ sh 'mvn clean install package'
 stage('Publish HTML Report'){
 steps{
  publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: 
-false, reportDir: '/var/lib/jenkins/workspace/Project-03-medicure/target/surefirereports', reportFiles: 'index.html', reportName: 'medicure-HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+false, reportDir: '/var/lib/jenkins/workspace/project-03-medicure/target/surefirereports', reportFiles: 'index.html', reportName: 'medicure-HTML Report', reportTitles: '', useWrapperFileDirectly: true])
  }
 }
 stage('Docker build image') {
@@ -46,24 +46,17 @@ stage('Docker login and push') {
                 sh 'terraform init'
                 sh 'terraform validate'
                 sh 'terraform apply --auto-approve'
+                sh 'sleep 20'
                 }
                
             }
         }
-stage('deploy to kubernetes'){
+stage('deploy to application to kubernetes'){
 steps{
 sh 'sudo chmod 600 ./terraform_files/DEMOKEY.pem'    
 sh 'sudo scp -o StrictHostKeyChecking=no -i ./terraform_files/DEMOKEY.pem medicure-deployment.yml ubuntu@54.160.117.9:/home/ubuntu/'
 sh 'sudo scp -o StrictHostKeyChecking=no -i ./terraform_files/DEMOKEY.pem medicure-service.yml ubuntu@54.160.117.9:/home/ubuntu/'
-
-script{
-try{
 sh 'ssh -i ./terraform_files/DEMOKEY.pem ubuntu@54.160.117.9 kubectl apply -f .'
-}catch(error)
-{
-sh 'ssh -i ./terraform_files/DEMOKEY.pem ubuntu@54.160.117.9 kubectl create -f .'
-}
-}
 }
 }
 }
