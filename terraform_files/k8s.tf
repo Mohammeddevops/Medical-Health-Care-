@@ -31,8 +31,7 @@ resource "aws_instance" "k8s-server" {
  "sudo groupadd docker",
  "sudo usermod -aG docker ubuntu",
  "wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb",
- "sudo apt install ./google-chrome-stable_current_amd64.deb -y",
- "minikube start"
+ "sudo apt install ./google-chrome-stable_current_amd64.deb -y"
  ]
  connection {
  type = "ssh"
