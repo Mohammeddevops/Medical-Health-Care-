@@ -27,7 +27,7 @@ stage('Docker build image') {
               steps {
                   
                   sh'sudo docker system prune -af '
-                  sh 'sudo docker build -t revanthkumar9/medicure:latest. '
+                  sh 'sudo docker build -t revanthkumar9/medicure:latest . '
               
                 }
             }
