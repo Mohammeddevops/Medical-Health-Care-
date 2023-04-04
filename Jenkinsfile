@@ -39,7 +39,7 @@ stage('Docker login and push') {
                   }
                 }
         }    
- stage (' setting up Kubernetes with terraform & deploying '){
+ stage (' setting up Kubernetes with terraform '){
             steps{
 
                 dir('terraform_files'){
