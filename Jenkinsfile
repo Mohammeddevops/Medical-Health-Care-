@@ -52,7 +52,7 @@ stage('Docker login and push') {
         }
 stage('deploy to kubernetes'){
 steps{
-sshagent(['K8s']) {
+sshagent(['cred1']) {
 sh 'scp -o StrictHostKeyChecking=no deployment.yml ubuntu@172.42.22.152:/home/ubuntu'
 script{
 try{
