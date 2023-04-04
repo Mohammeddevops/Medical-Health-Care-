@@ -36,8 +36,6 @@ https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/
  }
 }
 
-Mysg.tf
-
 resource "aws_security_group" "my_sg" {
  name = "my_sg"
  ingress {
