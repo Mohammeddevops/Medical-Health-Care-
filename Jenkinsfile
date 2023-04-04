@@ -27,7 +27,7 @@ stage('Docker build image') {
               steps {
                   
                   sh'sudo docker system prune -af '
-                  sh 'sudo docker build -t revanthkumar9/medicure:${BUILD_NUMBER}.0 . '
+                  sh 'sudo docker build -t revanthkumar9/medicure:latest. '
               
                 }
             }
@@ -35,7 +35,7 @@ stage('Docker login and push') {
               steps {
                    withCredentials([string(credentialsId: 'docpass', variable: 'docpasswd')]) {
                   sh 'sudo docker login -u revanthkumar9 -p ${docpasswd} '
-                  sh 'sudo docker push revanthkumar9/medicure:${BUILD_NUMBER}.0 '
+                  sh 'sudo docker push revanthkumar9/medicure:latest'
                   }
                 }
         }    
