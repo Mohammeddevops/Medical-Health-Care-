@@ -1,17 +1,21 @@
 provider "aws" {
  region = "us-east-1"
 }
-resource "aws_instance" "demoserver" {
+resource "aws_eip_association" "eip_assoc" {
+  instance_id   = aws_instance.k8s-server.id
+  allocation_id = "eipalloc-0574c17ddc8f64df8"
+}
+resource "aws_instance" "k8s-server" {
  ami = "ami-007855ac798b5175e"
  instance_type = "t2.medium"
- vpc_security_group_ids = [aws_security_group.my_sg.id]
+ vpc_security_group_ids = ["sg-0c7aae9017fc5106b"]
  key_name = "DEMOKEY"
    root_block_device {
       volume_size = 20
       volume_type = "gp2"
     }
  tags = {
- name = "kubernetes_instance"
+ name = "k8s-server"
  }
  provisioner "remote-exec" {
  inline = [
@@ -32,23 +36,5 @@ resource "aws_instance" "demoserver" {
  user = "ubuntu"
  private_key = file("./DEMOKEY.pem")
  }
- }
-}
-
-resource "aws_security_group" "my_sg" {
- name = "my_sg"
- ingress {
- description = "enable port 22"
- from_port = 22
- to_port = 22
- protocol = "tcp"
- cidr_blocks = ["0.0.0.0/0"]
- }
- egress {
- description = "outbound"
- from_port = 0
- to_port = 0
- protocol = "-1"
- cidr_blocks = ["0.0.0.0/0"]
  }
 }
