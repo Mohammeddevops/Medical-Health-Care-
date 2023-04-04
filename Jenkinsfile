@@ -68,4 +68,3 @@ sh 'ssh -i ./terraform_files/DEMOKEY.pem ubuntu@54.160.117.9 kubectl create -f .
 }
 }
 }
-}

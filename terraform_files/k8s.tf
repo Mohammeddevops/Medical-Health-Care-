@@ -14,9 +14,9 @@ resource "aws_instance" "k8s-server" {
       volume_size = 20
       volume_type = "gp2"
     }
- tags = {
- name = "k8s-server"
- }
+   tags = {
+        name = "k8s-server"
+    }
  provisioner "remote-exec" {
  inline = [
  "sudo apt-get update -y",
