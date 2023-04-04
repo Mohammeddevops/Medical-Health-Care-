@@ -20,7 +20,7 @@ sh 'mvn clean install package'
 stage('Publish HTML Report'){
 steps{
  publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: 
-false, reportDir: '/var/lib/jenkins/workspace/project-03-medicure/target/surefirereports', reportFiles: 'index.html', reportName: 'medicure-HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+false, reportDir: '/var/lib/jenkins/workspace/project-03-medicure/target/surefire-reports', reportFiles: 'index.html', reportName: 'medicure-HTML Report', reportTitles: '', useWrapperFileDirectly: true])
  }
 }
 stage('Docker build image') {
