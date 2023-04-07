@@ -15,7 +15,7 @@ spec:
         app: front-end
     spec:
        containers:
-         - name: addressbook
+         - name: medicure
            image: revanthkumar9/medicure:latest
            ports:
              - containerPort: 8082
