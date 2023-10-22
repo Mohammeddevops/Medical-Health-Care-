@@ -20,6 +20,6 @@ class MedicureApplicationTests {
 	
 	@Test
 	void testService() {
-	  assertEquals(doctorService.sayHello(), "Hello from Doctor Shubham");
+	  assertEquals(doctorService.sayHello(), "Hello from Doctor Mohammed");
 	}
 }

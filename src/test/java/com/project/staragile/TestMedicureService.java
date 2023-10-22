@@ -14,7 +14,7 @@ public class TestMedicureService {
 	
 	@Test
 	public void testRegisterDoctor() {
-		Doctor doctor = new Doctor("MP1110","Shubham","Neurologist","15 Years");
+		Doctor doctor = new Doctor("MP1110","Mohammed","Neurologist","15 Years");
 		assertEquals(doctor.getDoctorRegistrationId(), doctorService.registerDummyDoctor().getDoctorRegistrationId());
 	}
 
